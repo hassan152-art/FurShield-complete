@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --forest: #173F35;
+  --emerald: #2E7D65;
+  --mint: #BFE8D5;
+  --cream: #FFF9F0;
+  --sand: #F4EBDD;
+  --coral: #FF8066;
+  --golden: #F5C96A;
+  --ink: #17221E;
+  --muted: #6B7771;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  background-color: var(--cream);
+  color: var(--ink);
+}
+
+/* Custom cat-paw cursor, site-wide */
+*, *::before, *::after {
+  cursor: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABBUlEQVR4nO2XQRKDIAxFY6d3kJULT+MpOByn4DQuXOkp7KZ0AGMIgUo749+pwH8GkgwAjdVJJvXjsPvP27yI1hEB9OOwr3oK3iljxRBZkzBzDCInQmwAytyHAADIidCDC8AVBrnq6RAVJ5TqbDAVAWUs+d2NiSPxxMyxhVx4ayvYAmqfVz19BeIDwDlkZxAlYIct4Cg2dPuqjGWlaTHAWUpt89JhEFQaigBScMpYdiGqDpAyjBUMTB1ELJRYzRADUBCxuTOmagYHhF0J40aTSlkuSLVumAK5rBnlig0g/XsAuhv+TwRugOYA7xovMvnpNBTdCwAaVUIuSHEvkID4Krmq3bpcLxCbr06euGS2AAAAAElFTkSuQmCC") 4 4, auto !important;
+}
+
+/* Keep a text-editing cursor inside real text inputs for usability */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="search"],
+input:not([type]),
+textarea,
+[contenteditable="true"] {
+  cursor: text !important;
+}
+
+/* Preserve the disabled affordance */
+button:disabled,
+[disabled] {
+  cursor: not-allowed !important;
+}
+
+/* Footstep / paw-step loading animation */
+@keyframes pawStep {
+  0%, 100% { opacity: 0.15; transform: translateY(0) scale(0.85); }
+  50% { opacity: 1; transform: translateY(-5px) scale(1); }
+}
+.paw-steps span {
+  display: inline-block;
+  animation: pawStep 1.1s ease-in-out infinite;
+}
+.paw-steps span:nth-child(1) { animation-delay: 0s; }
+.paw-steps span:nth-child(2) { animation-delay: 0.18s; }
+.paw-steps span:nth-child(3) { animation-delay: 0.36s; }
+.paw-steps span:nth-child(4) { animation-delay: 0.54s; }
+
+@keyframes marqueeFade {
+  0%, 100% { opacity: 0; transform: translateY(4px); }
+  10%, 90% { opacity: 1; transform: translateY(0); }
+}
+.announcement-text {
+  animation: marqueeFade 4s ease-in-out infinite;
+}
