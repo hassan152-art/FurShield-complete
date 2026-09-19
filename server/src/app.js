@@ -6,11 +6,11 @@ app.use(
       if (!origin) return callback(null, true); // non-browser requests (curl, Postman, health checks)
 
       const isAllowedExact = allowedOrigins.includes(origin);
-      // Allow any deployment under this Vercel team/scope (production and
-      // every preview URL), so we don't have to chase a new hash each deploy.
-      const isVercelTeamDeployment = /^https:\/\/.*-hassan-857d\.vercel\.app$/.test(origin);
+      // Allow any deployment of this frontend project — production domain
+      // and every preview URL, with or without the team-scope suffix.
+      const isFurShieldDeployment = /^https:\/\/fur-shield-complete(-.*)?\.vercel\.app$/.test(origin);
 
-      if (isAllowedExact || isVercelTeamDeployment) {
+      if (isAllowedExact || isFurShieldDeployment) {
         return callback(null, true);
       }
       return callback(new Error(`CORS blocked for origin: ${origin}`));
